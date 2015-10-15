@@ -1,0 +1,62 @@
+body {
+  font-family: 'open sans', sans-serif;
+  font-size: 14px; }
+
+h1 {
+  line-height: 100px; }
+
+ul {
+  list-style-type: none; }
+
+img {
+  vertical-align: middle; }
+
+form {
+  text-align: center; }
+  form input[type="text"], form input[type="password"] {
+    height: 30px;
+    padding: 4px;
+    margin: 6px;
+    width: 200px;
+    border: 2px solid black;
+    opacity: .8; }
+
+.center {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 5px; }
+
+.bold {
+  font-weight: bold; }
+
+.comment-count {
+  margin-left: 30px;
+  font-size: 12px; }
+
+.remove-favorite-button {
+  margin-left: 20px; }
+
+.thumbnail {
+  margin-right: 20px;
+  height: 70px;
+  width: 70px; }
+
+.star {
+  margin-right: 10px;
+  display: inline-block;
+  width: 20px;
+  height: 20px; }
+
+#hot-list .star, #top-list .star {
+  cursor: pointer; }
+
+.not-fave {
+  background: url("../img/star.png") no-repeat;
+  background-size: cover; }
+
+.fave {
+  background: url("../img/fave.png") no-repeat;
+  background-size: cover; }
+
+#favorite-list li {
+  margin-bottom: 20px; }
