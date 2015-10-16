@@ -72,7 +72,7 @@
 					}
 				}
 				
-				$("#submit-sign-up").show();
+				//$("#submit-sign-up").show();
 			}
 			 
 			function test_input($data) {
