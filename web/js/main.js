@@ -9,7 +9,6 @@ $(document).ready(function(){
 		async: false,
 		url: "getUserID.php",
 		success: function(data){
-			alert(data);
 			userID = data;
 		}
 	});
@@ -89,7 +88,6 @@ $('#hot-list, #top-list').on('click', '.star', function(){
 					url: url,
 					thumbnail: thumbnail},
 			success: function(data){
-				alert(data);
 			}
 		});
 	
