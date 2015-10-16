@@ -1,5 +1,6 @@
-var favorites = [];
-var userID;
+var _favorites = [];
+var _userID;
+var _isToggling = false;
 
 $(document).ready(function(){
 
@@ -9,7 +10,7 @@ $(document).ready(function(){
 		async: false,
 		url: "getUserID.php",
 		success: function(data){
-			userID = data;
+			_userID = data;
 		}
 	});
 	
@@ -17,7 +18,7 @@ $(document).ready(function(){
 	$.ajax({
 		type: "POST",
 		async: false,
-		data: {userID: userID},
+		data: {userID: _userID},
 		url: "getFavorites.php",
 		success: function(data){
 			var json = JSON.parse(data);
@@ -42,9 +43,9 @@ function loadRedditList(list, children){
 		var child = children[i].data;		
 		var isFave = false;
 		
-		// See if any of the posts in the hot or top list are currently one of our favorites. If so, visually indicate that by starring them
-		for(var j = 0;!isFave && j < favorites.length; j++){
-			isFave = favorites[j] == child.id;
+		// See if any of the posts in the hot or top list are currently one of our _favorites. If so, visually indicate that by starring them
+		for(var j = 0;!isFave && j < _favorites.length; j++){
+			isFave = _favorites[j] == child.id;
 		}
 		
 		var faveClass = isFave ? 'fave' : 'not-fave';
@@ -54,13 +55,13 @@ function loadRedditList(list, children){
 }
 
 function loadFavoriteList(list, data){	
-	favorites = [];
+	_favorites = [];
 	
 	for(var i = 0; i<data.length; i++){
 	  var current = data[i];
 	  
 	  if(current.redditID){
-		favorites.push(current.redditID);
+		_favorites.push(current.redditID);
 		appendFavoriteToList(list, current.redditID, current.title, current.url, current.thumbnail);
 	  }
 	}
@@ -71,6 +72,10 @@ function appendFavoriteToList(list, redditID, title, url, thumbnail){
 }
 
 $('#hot-list, #top-list').on('click', '.star', function(){
+	// this prevents the user from double clicking really fast and getting data out of sync
+	if(_isToggling) return;
+	
+	_isToggling = true;
 	var id = $(this).data("id");
 	var title = $(this).data("title");
 	var url = $(this).data("url");
@@ -82,7 +87,7 @@ $('#hot-list, #top-list').on('click', '.star', function(){
 			type: "POST",
 			async: true,
 			url: "addFavorite.php",
-			data: { userID: userID, 
+			data: { userID: _userID, 
 					redditID: id,
 					title: title,
 					url: url,
@@ -98,13 +103,15 @@ $('#hot-list, #top-list').on('click', '.star', function(){
 		$("#hot-list, #top-list").find("[data-id='" + id + "']").removeClass('not-fave').addClass('fave');
 		
 		// Add to user's list of favorites
-		favorites.push(id);
+		_favorites.push(id);
 		appendFavoriteToList("#favorite-list ul", id, title, url, thumbnail);
 	}
 	else{	
 		$(this).removeClass('fave').addClass('not-fave');
 		deleteFavorite(id);
 	}
+	
+	_isToggling = false;
 });
 
 // Event handler when the user clicks 'remove' on a post in their favorites list
@@ -119,9 +126,9 @@ function deleteFavorite(redditID){
 		type: "POST",
 		async: true,
 		url: "deleteFavorite.php",
-		data: { userID: userID, redditID: redditID},
+		data: { userID: _userID, redditID: redditID},
 		success: function(data){
-			favorites = $.grep(favorites, function(value) {
+			_favorites = $.grep(_favorites, function(value) {
 			  return value != redditID;
 			});
 			
