@@ -9,6 +9,7 @@ $(document).ready(function(){
 		async: false,
 		url: "getUserID.php",
 		success: function(data){
+			alert(data);
 			userID = data;
 		}
 	});
@@ -75,11 +76,7 @@ $('#hot-list, #top-list').on('click', '.star', function(){
 	var title = $(this).data("title");
 	var url = $(this).data("url");
 	var thumbnail = $(this).data("thumbnail");
-	alert(userID);
-	alert(id);
-	alert(title);
-	alert(url);
-	alert(thumbnail);
+	
 	// If the user clicks on a post that is not currently a favorite, then add it to their favorites (both in the DB and in the HTML favorites tab)
 	if($(this).hasClass('not-fave')){
 		$.ajax({
