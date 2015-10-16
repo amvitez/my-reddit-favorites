@@ -1,6 +1,7 @@
 var _favorites = [];
 var _userID;
 var _isToggling = false;
+var _isDeleting = false;
 
 $(document).ready(function(){
 
@@ -116,7 +117,11 @@ $('#hot-list, #top-list').on('click', '.star', function(){
 
 // Event handler when the user clicks 'remove' on a post in their favorites list
 $('#favorite-list').on('click', '.remove-favorite-button', function(){
+	if(_isDeleting) return;
+	
+	_isDeleting = true;
 	deleteFavorite($(this).siblings("div.star").data("id"));
+	_isDeleting = false;
 });
 
 // Remove favorite record from DB, remove the post from the favorites array, 
