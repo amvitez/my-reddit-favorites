@@ -15,6 +15,7 @@
 			$username = $password = "";
 
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			   $("#submit-sign-in").attr("disabled", true);
 			   
 			   $username = $_POST["username"];
 			   
@@ -64,6 +65,8 @@
 						exit;
 					}
 			   }
+			   
+			   $("#submit-sign-in").attr("disabled", false);
 			}
 
 			function test_input($data) {
@@ -83,7 +86,7 @@
 				<br>
 				<input type="password" placeholder="Password" name="password" required><?php echo $passwordErr; ?>
 				<br>
-				<input type="submit" value="Sign In">
+				<input type="submit" id="submit-sign-in" value="Sign In">
 			</form>
 			<p class="center">Don't have an account? <a class="bold" href="register.php">Sign up</a></p>
 		</div>
