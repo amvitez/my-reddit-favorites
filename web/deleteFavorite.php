@@ -10,7 +10,7 @@ try {
 	$sql->bindParam(':redditID', $redditID);
 	$sql->execute();
 
-} catch(PDOException $e) {
+} catch(Exception $e) {
     echo 'Exception -> '.$e->getMessage();
 }
 

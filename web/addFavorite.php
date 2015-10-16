@@ -41,7 +41,7 @@ try {
 		$sql->bindParam(':postID', $postID);
 		$sql->execute();
 
-} catch(PDOException $e) {
+} catch(Exception $e) {
     echo 'Exception -> '.$e->getMessage();
 }
 

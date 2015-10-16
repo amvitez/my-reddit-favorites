@@ -9,7 +9,7 @@ try {
 	$sql->execute();
 	echo json_encode($sql->fetchAll(PDO::FETCH_ASSOC));
 
-} catch(PDOException $e) {
+} catch(Exception $e) {
     echo 'Exception -> '.$e->getMessage();
 }
 
