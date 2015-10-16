@@ -75,7 +75,9 @@ $('#hot-list, #top-list').on('click', '.star', function(){
 	var title = $(this).data("title");
 	var url = $(this).data("url");
 	var thumbnail = $(this).data("thumbnail");
-	
+	alert(userID);
+	alert(redditID);
+	alert(thumbnail);
 	// If the user clicks on a post that is not currently a favorite, then add it to their favorites (both in the DB and in the HTML favorites tab)
 	if($(this).hasClass('not-fave')){
 		$.ajax({
@@ -86,7 +88,11 @@ $('#hot-list, #top-list').on('click', '.star', function(){
 					redditID: id,
 					title: title,
 					url: url,
-					thumbnail: thumbnail}
+					thumbnail: thumbnail},
+			success: function(data){
+				alert("data");
+				alert(data);
+			}
 		});
 	
 		// Add fave class which will display a golden star next to the post
