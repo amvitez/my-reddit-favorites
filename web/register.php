@@ -11,6 +11,7 @@
 			$usernameErr = $passwordErr = "";
 
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				$("#username").attr("disabled", true);
 				$username = test_input($_POST["username"]);
 				$password = test_input($_POST["password"]);
 				$confirmPassword = test_input($_POST["confirmPassword"]);
@@ -70,6 +71,8 @@
 						exit;
 					}
 				}
+				
+				$("#username").attr("disabled", false);
 			}
 			 
 			function test_input($data) {
@@ -84,7 +87,7 @@
 			<h1 class="center">My Reddit Favorites</h1>
 			<h2 class="center">Sign Up</h2>
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-				<input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required><br>
+				<input type="text" placeholder="Username" id="username" name="username" value="<?php echo $username; ?>" required><br>
 				<input type="password" placeholder="Password" name="password" required><br>
 				<input type="password" placeholder="Confirm Password" name="confirmPassword" required><br>
 				<input type="submit" value="Sign Up">
