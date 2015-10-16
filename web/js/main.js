@@ -76,7 +76,7 @@ $('#hot-list, #top-list').on('click', '.star', function(){
 	var url = $(this).data("url");
 	var thumbnail = $(this).data("thumbnail");
 	alert(userID);
-	alert(redditID);
+	alert(id);
 	alert(thumbnail);
 	// If the user clicks on a post that is not currently a favorite, then add it to their favorites (both in the DB and in the HTML favorites tab)
 	if($(this).hasClass('not-fave')){
