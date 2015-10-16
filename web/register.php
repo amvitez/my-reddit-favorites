@@ -11,7 +11,6 @@
 			$usernameErr = $passwordErr = "";
 
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-				$("#submit-sign-up").hide();
 				$username = test_input($_POST["username"]);
 				$password = test_input($_POST["password"]);
 				$confirmPassword = test_input($_POST["confirmPassword"]);
@@ -71,8 +70,6 @@
 						exit;
 					}
 				}
-				
-				//$("#submit-sign-up").show();
 			}
 			 
 			function test_input($data) {

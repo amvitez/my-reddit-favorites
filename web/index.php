@@ -14,9 +14,7 @@
 			$usernameErr = $passwordErr = "";
 			$username = $password = "";
 
-			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			   $("#submit-sign-in").hide();
-			   
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {			   
 			   $username = $_POST["username"];
 			   
 			   if ($username == "") {
@@ -65,8 +63,6 @@
 						exit;
 					}
 			   }
-			   
-			   $("#submit-sign-in").show();
 			}
 
 			function test_input($data) {
