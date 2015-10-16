@@ -11,7 +11,7 @@
 			$usernameErr = $passwordErr = "";
 
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-				$("#submit-sign-up").attr("disabled", true);
+				$("#submit-sign-up").hide();
 				$username = test_input($_POST["username"]);
 				$password = test_input($_POST["password"]);
 				$confirmPassword = test_input($_POST["confirmPassword"]);
@@ -72,7 +72,7 @@
 					}
 				}
 				
-				$("#submit-sign-up").attr("disabled", false);
+				$("#submit-sign-up").show();
 			}
 			 
 			function test_input($data) {
